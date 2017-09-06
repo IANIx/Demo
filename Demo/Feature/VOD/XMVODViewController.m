@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
        self.view.backgroundColor = XM_COMMON_BG_COLOR;
-    [self getliveList];
+    [self getchanelSchedulesList];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self.view);
@@ -81,7 +81,22 @@
                                    NSLog(@"failed -->error == %@",error.description);
                                }];
 }
+- (void)createRequest {
+    [[XM_HTTPRequest manager] requestWithMethod:POST
+                                       WithPath:XM_SPECIALLIST_URL
+                                     WithParams:@{@"mac":[self getMacAddress]}
+                               WithSuccessBlock:^(NSDictionary *dic) {
+                                   if (dic[@"resultCode"] == 0) {
+                                       NSArray *array = dic[@"specials"];
+                                   }
+                               } WithFailurBlock:^(NSError *error) {
+    
+                               }];
+}
 
+-(void)creatRequsst{
+   
+}
 #pragma mark - TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 15;

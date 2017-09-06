@@ -16,4 +16,5 @@
 #define XM_CONTENTLIST_URL      [NSString stringWithFormat:@"%@/v1/content/list",IP]
 #define XM_CHANELLIST_URL       [NSString stringWithFormat:@"%@/v1/channel/list",IP]
 #define XM_CHANNELSCEDULES_URL  [NSString stringWithFormat:@"%@/v1/channel/schedules",IP]
+#define XM_SPECIALLIST_URL      [NSString stringWithFormat:@"%@/v1/special/list",IP]
 #endif /* XM_HttpURL_h */
