@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChannelPlayViewController : XMRootViewController
-
+@interface XMChannelPlayViewController : XMRootViewController
+@property (nonatomic, strong) XM_ChannelModel *model;
 @end

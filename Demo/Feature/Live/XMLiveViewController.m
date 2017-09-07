@@ -10,7 +10,8 @@
 #import "XMLiveTableViewCell.h"
 @interface XMLiveViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UITableView   *tableView;
+@property (nonatomic, strong) NSMutableArray<XM_ChannelModel *> *dataSource;
 
 @end
 
@@ -18,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _dataSource = @[].mutableCopy;
     [self requestchannellist];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -26,30 +28,38 @@
 
     // Do any additional setup after loading the view.
 }
-
+#pragma mark - request
 -(void)requestchannellist{
-    
     [[XM_HTTPRequest manager] requestWithMethod:POST
                                        WithPath:XM_CHANELLIST_URL
                                      WithParams:@{@"mac":[self getMacAddress],
                                                   @"pageSize":[NSNumber numberWithInt:10],
                                                   @"page":[NSNumber numberWithInt:1]}
                                WithSuccessBlock:^(NSDictionary *dic) {
-                                   NSLog(@"success --> %@",dic);
+                                   XM_ChannelListModel *model = [XM_ChannelListModel yy_modelWithDictionary:dic];
+                                   if (model.resultCode == 0) {
+                                       [self.dataSource addObjectsFromArray:model.channels];
+                                       [self.tableView reloadData];
+                                   }
                                } WithFailurBlock:^(NSError *error) {
-                                   NSLog(@"failed -->error == %@",error.description);
                                }];
 
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 15;
+    return self.dataSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     XMLiveTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[XMLiveTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
+    [cell updateWithModel:self.dataSource[indexPath.row]];
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIViewController *viewController = [XMRouter matchController:@"live/play" withDic:@{@"model":self.dataSource[indexPath.row]}];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return (16+108+16)/2;
@@ -61,7 +71,7 @@
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor clearColor];

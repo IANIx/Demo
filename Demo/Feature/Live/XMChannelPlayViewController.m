@@ -6,16 +6,17 @@
 //  Copyright © 2017年 李勇杰. All rights reserved.
 //
 
-#import "ChannelPlayViewController.h"
+#import "XMChannelPlayViewController.h"
 
-@interface ChannelPlayViewController ()
+@interface XMChannelPlayViewController ()
 
 @end
 
-@implementation ChannelPlayViewController
+@implementation XMChannelPlayViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self creatRequestPlay];
     [self requestschedules];
     self.view.backgroundColor = zkHexColor(0x181c28);
     
@@ -27,29 +28,25 @@
                                            WithPath:XM_CHANNELSCEDULES_URL
                                          WithParams:@{@"mac":[self getMacAddress],
                                                       @"scheduleType":@"0",
-                                                      @"channelId" :@"237",
+                                                      @"channelId" :self.model.channelId,
                                                       @"pageSize":[NSNumber numberWithInt:10],
                                                       @"page":[NSNumber numberWithInt:1]}
                                    WithSuccessBlock:^(NSDictionary *dic) {
-                                       NSLog(@"success --> %@",dic);
                                    } WithFailurBlock:^(NSError *error) {
-                                       NSLog(@"failed -->error == %@",error.description);
                                    }];
     }
 -(void)creatRequestPlay{
     
     [[XM_HTTPRequest manager] requestWithMethod:POST
                                        WithPath:XM_Play_URL
-                                     WithParams:@{@"mac":[self getMacAddress],
-                                                  @"contentId":@"0",
+                                     WithParams:@{@"mac":@"FC:D5:D9:02:F6:1A",
+                                                  @"contentId":@"1ba443a0-9c53-4f18-8ede-eb91668c567f",
                                                   @"mediaType":@"vod",
                                                   @"quality":@"auto"
                                                   }
      
                                WithSuccessBlock:^(NSDictionary *dic) {
-                                   NSLog(@"success --> %@",dic);
                                } WithFailurBlock:^(NSError *error) {
-                                   NSLog(@"failed -->error == %@",error.description);
                                }];
     
 }

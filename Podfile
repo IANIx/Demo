@@ -13,6 +13,7 @@ inhibit_all_warnings!
   pod 'SVProgressHUD'
   pod 'Masonry'
   pod 'AFNetworking'
+  pod 'YYModel'
   pod 'ios-qr-encoder', '~> 1.0.4'
 end
 

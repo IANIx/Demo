@@ -29,6 +29,7 @@
 		829F6A3B1F57AE5E00D299C6 /* XM_MeInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 829F6A3A1F57AE5E00D299C6 /* XM_MeInfoTableViewCell.m */; };
 		829F6A3E1F57AEC300D299C6 /* XM_MeActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 829F6A3D1F57AEC300D299C6 /* XM_MeActionTableViewCell.m */; };
 		829F6A411F57AED200D299C6 /* XM_MEDeatilTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 829F6A401F57AED200D299C6 /* XM_MEDeatilTableViewCell.m */; };
+		82B53A191F61351B009D7452 /* XM_Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B53A181F61351B009D7452 /* XM_Model.m */; };
 		82D40C581F32D2A400256999 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D40C571F32D2A400256999 /* main.m */; };
 		82D40C5B1F32D2A400256999 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D40C5A1F32D2A400256999 /* AppDelegate.m */; };
 		82D40C5E1F32D2A400256999 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D40C5D1F32D2A400256999 /* ViewController.m */; };
@@ -38,7 +39,7 @@
 		82D40C711F32D2A400256999 /* DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D40C701F32D2A400256999 /* DemoTests.m */; };
 		82D40C7C1F32D2A400256999 /* DemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D40C7B1F32D2A400256999 /* DemoUITests.m */; };
 		82E85FBA1F5FE20F00453BD3 /* XM_HTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E85FB91F5FE20F00453BD3 /* XM_HTTPRequest.m */; };
-		B76FE2A31F61268800389A40 /* ChannelPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B76FE2A21F61268800389A40 /* ChannelPlayViewController.m */; };
+		B76FE2A31F61268800389A40 /* XMChannelPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B76FE2A21F61268800389A40 /* XMChannelPlayViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,8 @@
 		829F6A3F1F57AED200D299C6 /* XM_MEDeatilTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XM_MEDeatilTableViewCell.h; sourceTree = "<group>"; };
 		829F6A401F57AED200D299C6 /* XM_MEDeatilTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XM_MEDeatilTableViewCell.m; sourceTree = "<group>"; };
 		82AA8FEE1F32D9430003F4AE /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		82B53A171F61351B009D7452 /* XM_Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XM_Model.h; sourceTree = "<group>"; };
+		82B53A181F61351B009D7452 /* XM_Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XM_Model.m; sourceTree = "<group>"; };
 		82D40C531F32D2A400256999 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82D40C571F32D2A400256999 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		82D40C591F32D2A400256999 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
@@ -125,8 +128,8 @@
 		82E85FB91F5FE20F00453BD3 /* XM_HTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XM_HTTPRequest.m; sourceTree = "<group>"; };
 		82E85FBB1F5FE35000453BD3 /* XM_HttpURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XM_HttpURL.h; sourceTree = "<group>"; };
 		9879062F434EA7EBB2AD8D16 /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
-		B76FE2A11F61268800389A40 /* ChannelPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelPlayViewController.h; sourceTree = "<group>"; };
-		B76FE2A21F61268800389A40 /* ChannelPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelPlayViewController.m; sourceTree = "<group>"; };
+		B76FE2A11F61268800389A40 /* XMChannelPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMChannelPlayViewController.h; sourceTree = "<group>"; };
+		B76FE2A21F61268800389A40 /* XMChannelPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMChannelPlayViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,8 +234,8 @@
 			children = (
 				827F6EF61F32DC63007A1970 /* XMLiveViewController.h */,
 				827F6EF71F32DC63007A1970 /* XMLiveViewController.m */,
-				B76FE2A11F61268800389A40 /* ChannelPlayViewController.h */,
-				B76FE2A21F61268800389A40 /* ChannelPlayViewController.m */,
+				B76FE2A11F61268800389A40 /* XMChannelPlayViewController.h */,
+				B76FE2A21F61268800389A40 /* XMChannelPlayViewController.m */,
 				823155CB1F33238700554025 /* XMLiveTableViewCell.h */,
 				823155CC1F33238700554025 /* XMLiveTableViewCell.m */,
 			);
@@ -281,6 +284,9 @@
 		829F6A341F57AA7600D299C6 /* Root */ = {
 			isa = PBXGroup;
 			children = (
+				82B53A161F613501009D7452 /* Models */,
+				82B53A171F61351B009D7452 /* XM_Model.h */,
+				82B53A181F61351B009D7452 /* XM_Model.m */,
 				829F6A351F57AA8F00D299C6 /* XMRootViewController.h */,
 				829F6A361F57AA8F00D299C6 /* XMRootViewController.m */,
 			);
@@ -309,6 +315,13 @@
 				827F6EE71F32DA73007A1970 /* Utils */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		82B53A161F613501009D7452 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		82D40C4A1F32D2A400256999 = {
@@ -600,13 +613,14 @@
 				822288EA1F5D4C7F0071B25A /* XMDetail_VideoTableViewCell.m in Sources */,
 				822288E71F5D4AA40071B25A /* XMDeatilViewController.m in Sources */,
 				829F6A371F57AA8F00D299C6 /* XMRootViewController.m in Sources */,
+				82B53A191F61351B009D7452 /* XM_Model.m in Sources */,
 				822288ED1F5D4C990071B25A /* XMDetail_CommentTableViewCell.m in Sources */,
 				827F6EFB1F32DC7A007A1970 /* XMMeViewController.m in Sources */,
 				822288F01F5D4CDB0071B25A /* XMDetail_BriefIntroductionTableViewCell.m in Sources */,
 				827F6F011F32DC96007A1970 /* XMVODViewController.m in Sources */,
 				82D40C5E1F32D2A400256999 /* ViewController.m in Sources */,
 				827F6F051F32DD9F007A1970 /* AppDelegate+Router.m in Sources */,
-				B76FE2A31F61268800389A40 /* ChannelPlayViewController.m in Sources */,
+				B76FE2A31F61268800389A40 /* XMChannelPlayViewController.m in Sources */,
 				822288F31F5D51730071B25A /* XMDetail_AnthologyTableViewCell.m in Sources */,
 				823155CD1F33238700554025 /* XMLiveTableViewCell.m in Sources */,
 				827F6EF51F32DC2B007A1970 /* XMMainViewController.m in Sources */,

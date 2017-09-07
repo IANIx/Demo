@@ -59,31 +59,19 @@
                                    NSLog(@"failed -->error == %@",error.description);
                                }];
 }
-- (void)getchanelList {
-    
-    [[XM_HTTPRequest manager] requestWithMethod:POST
-                                       WithPath:XM_CHANELLIST_URL
-                                     WithParams:@{@"mac":[self getMacAddress],
-                                                  @"pageSize":[NSNumber numberWithInt:10],
-                                                  @"page":[NSNumber numberWithInt:1]}
-                               WithSuccessBlock:^(NSDictionary *dic) {
-                                   NSLog(@"success --> %@",dic);
-                               } WithFailurBlock:^(NSError *error) {
-                                   NSLog(@"failed -->error == %@",error.description);
-                               }];
-}
 - (void)getchanelSchedulesList {
     [[XM_HTTPRequest manager] requestWithMethod:POST
                                        WithPath:XM_CHANNELSCEDULES_URL
                                      WithParams:@{@"mac":[self getMacAddress],
                                                   @"scheduleType":@"0",
-                                                  @"channelId" :@"237",
+                                                  @"channelId" :@"0",
                                                   @"pageSize":[NSNumber numberWithInt:10],
                                                   @"page":[NSNumber numberWithInt:1]}
                                WithSuccessBlock:^(NSDictionary *dic) {
-                                   NSLog(@"success --> %@",dic);
+                                   if (dic[@"resultCode"] == 0) {
+                                       NSArray *array = dic[@"schedules"];
+                                   }
                                } WithFailurBlock:^(NSError *error) {
-                                   NSLog(@"failed -->error == %@",error.description);
                                }];
 }
 - (void)createRequest {
@@ -108,7 +96,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 200;
+    return 0.0000001;
 }
 
     

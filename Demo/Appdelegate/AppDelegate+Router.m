@@ -14,6 +14,7 @@
 #import "XMMainViewController.h"
 #import "XMMoreViewController.h"
 #import "XMDeatilViewController.h"
+#import "XMChannelPlayViewController.h"
 
 @implementation AppDelegate (Router)
 
@@ -30,6 +31,8 @@
     /**vod点击进去的页面*/
     [XMRouter map:@"vod/more" toControllerClass:[XMMoreViewController class]];
     [XMRouter map:@"vod/detail" toControllerClass:[XMDeatilViewController class]];
+    
+    [XMRouter map:@"live/play" toControllerClass:[XMChannelPlayViewController class]];
     
     
 }

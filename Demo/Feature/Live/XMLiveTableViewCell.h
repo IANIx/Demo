@@ -10,4 +10,5 @@
 
 @interface XMLiveTableViewCell : UITableViewCell
 
+- (void)updateWithModel:(XM_ChannelModel *)model;
 @end

@@ -52,7 +52,11 @@
         make.left.equalTo(self.lblTime.mas_right).with.offset(10);
     }];
 }
-
+- (void)updateWithModel:(XM_ChannelModel *)model {
+    self.lblTVName.text = model.channelName;
+    self.lblMessage.text = model.message;
+    [self.imgPreview sd_setImageWithURL:[NSURL URLWithString:model.logo]];
+}
 
 #pragma mark - lazy
 - (UIImageView *)imgPreview {
