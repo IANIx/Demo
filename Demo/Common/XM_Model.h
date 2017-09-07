@@ -29,6 +29,24 @@
 @property (nonatomic, copy  ) NSArray *channels;
 @end
 
+@interface XM_AnimationModel : NSObject
+
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *duration;
+@property (nonatomic, copy) NSString *width;
+@property (nonatomic, copy) NSString *height;
+
+@end
+
+@interface XM_StartupAnimationModel : NSObject
+
+@property (nonatomic, assign) NSInteger resultCode;
+@property (nonatomic, copy  ) NSString *message;
+@property (nonatomic, strong) XM_AnimationModel *animation;
+
+@end
+
 @interface XM_Model : NSObject
 
 @end

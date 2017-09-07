@@ -27,6 +27,24 @@
 }
 @end
 
+@implementation XM_AnimationModel
+
+
+@end
+@implementation XM_StartupAnimationModel
+
++ (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper{
+    return @{@"message" : @"description",
+             @"resultCode":@"resultCode",
+             @"animation":@"animation"};
+}
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"message" : @"description",
+             @"resultCode":@"resultCode",
+             @"animation":[XM_AnimationModel class]};
+}
+
+@end
 @implementation XM_Model
 
 

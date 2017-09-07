@@ -8,23 +8,23 @@
 
 #import "XMVODViewController.h"
 #import "XMVODTableViewCell.h"
+#import "XMBannerView.h"
 
 @interface XMVODViewController () <UITableViewDelegate,UITableViewDataSource,XMVODCellActionDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) XMBannerView *bannerView;
 @end
 
 @implementation XMVODViewController
-
-{
-    UIScrollView *_scrollView;
-    UIPageControl *_pageControl;
-    UILabel *_label;}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
        self.view.backgroundColor = XM_COMMON_BG_COLOR;
     [self getchanelSchedulesList];
+    
+    self.bannerView = [[XMBannerView alloc]initWithFrame:CGRectMake(0, 0, MainScreenWidth, 175)];
+    
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self.view);
@@ -96,9 +96,11 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0.0000001;
+    return 175.f;
 }
-
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return self.bannerView;
+}
     
 
 

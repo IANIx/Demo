@@ -39,6 +39,11 @@
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
+		<key>YYModel.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
 		<key>ios-qr-encoder.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -52,7 +57,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>06BC135E0C8CD847B0A8D00708B3FC54</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1D8107575CBA344726B422B207B6ADDD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>218B07D06472E45DDB7D45A974674965</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>583DD8F5251F3172DC4092C3B2A56EF3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -68,6 +88,11 @@
 			<true/>
 		</dict>
 		<key>9E033EDB5EC0819481B0546434FA577B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B15EBE79718EFC8E6D582B72516A0C66</key>
 		<dict>
 			<key>primary</key>
 			<true/>

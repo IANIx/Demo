@@ -40,6 +40,7 @@
 		82D40C7C1F32D2A400256999 /* DemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D40C7B1F32D2A400256999 /* DemoUITests.m */; };
 		82E85FBA1F5FE20F00453BD3 /* XM_HTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E85FB91F5FE20F00453BD3 /* XM_HTTPRequest.m */; };
 		B76FE2A31F61268800389A40 /* XMChannelPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B76FE2A21F61268800389A40 /* XMChannelPlayViewController.m */; };
+		B76FE2AC1F618CC300389A40 /* XMBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B76FE2AB1F618CC300389A40 /* XMBannerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,8 @@
 		9879062F434EA7EBB2AD8D16 /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		B76FE2A11F61268800389A40 /* XMChannelPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMChannelPlayViewController.h; sourceTree = "<group>"; };
 		B76FE2A21F61268800389A40 /* XMChannelPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMChannelPlayViewController.m; sourceTree = "<group>"; };
+		B76FE2AA1F618CC300389A40 /* XMBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMBannerView.h; sourceTree = "<group>"; };
+		B76FE2AB1F618CC300389A40 /* XMBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMBannerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,8 @@
 				822288F21F5D51730071B25A /* XMDetail_AnthologyTableViewCell.m */,
 				822288F41F5D51C20071B25A /* XMDetail_RelatedTableViewCell.h */,
 				822288F51F5D51C20071B25A /* XMDetail_RelatedTableViewCell.m */,
+				B76FE2AA1F618CC300389A40 /* XMBannerView.h */,
+				B76FE2AB1F618CC300389A40 /* XMBannerView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -624,6 +629,7 @@
 				822288F31F5D51730071B25A /* XMDetail_AnthologyTableViewCell.m in Sources */,
 				823155CD1F33238700554025 /* XMLiveTableViewCell.m in Sources */,
 				827F6EF51F32DC2B007A1970 /* XMMainViewController.m in Sources */,
+				B76FE2AC1F618CC300389A40 /* XMBannerView.m in Sources */,
 				822288F61F5D51C20071B25A /* XMDetail_RelatedTableViewCell.m in Sources */,
 				829F6A3B1F57AE5E00D299C6 /* XM_MeInfoTableViewCell.m in Sources */,
 				82E85FBA1F5FE20F00453BD3 /* XM_HTTPRequest.m in Sources */,

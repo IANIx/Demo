@@ -10,7 +10,7 @@
 #define XM_HttpURL_h
 
 
-#define IP @"http://m.xmediatv.com:8888"
+#define IP @"http://poc.sdmc.tv"
 
 //#define IP @"http://10.10.122.23:8080"
 
@@ -28,6 +28,7 @@
 #define XM_CONTENTDETAIL_URL    [NSString stringWithFormat:@"%@/v1/content/detail",IP]
 // 播放鉴权
 #define XM_Play_URL              [NSString stringWithFormat:@"%@/v1/play/auth",IP]
-// 获取节目单
+
+#define XM_STARTUPANIMATION_URL   [NSString stringWithFormat:@"%@/v1/startup/animation",IP]
 
 #endif /* XM_HttpURL_h */
