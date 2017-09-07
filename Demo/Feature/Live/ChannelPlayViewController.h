@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChannelPlayViewController : UIViewController
+@interface ChannelPlayViewController : XMRootViewController
 
 @end

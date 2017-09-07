@@ -13,6 +13,7 @@
 #import "XMLiveViewController.h"
 #import "XMMainViewController.h"
 #import "XMMoreViewController.h"
+#import "XMDeatilViewController.h"
 
 @implementation AppDelegate (Router)
 
@@ -20,10 +21,16 @@
     
     [XMRouter map:@"main" toControllerClass:[XMMainViewController class]];
     
+    /**主页面四个页面*/
     [XMRouter map:@"main/me" toControllerClass:[XMMeViewController class]];
     [XMRouter map:@"main/vip" toControllerClass:[XMVipViewController class]];
     [XMRouter map:@"main/vod" toControllerClass:[XMVODViewController class]];
     [XMRouter map:@"main/live" toControllerClass:[XMLiveViewController class]];
+    
+    /**vod点击进去的页面*/
     [XMRouter map:@"vod/more" toControllerClass:[XMMoreViewController class]];
+    [XMRouter map:@"vod/detail" toControllerClass:[XMDeatilViewController class]];
+    
+    
 }
 @end

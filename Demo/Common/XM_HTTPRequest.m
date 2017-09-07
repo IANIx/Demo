@@ -25,16 +25,19 @@
         // 请求超时设定
         self.requestSerializer.timeoutInterval = 5;
         self.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+        
         self.responseSerializer.acceptableContentTypes
-        = [NSSet
-           setWithObjects:@"text/html",@"text/plain",@"application/json",nil];
-        self.responseSerializer = [AFJSONResponseSerializer serializer];
+        = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
+        
+        self.responseSerializer = [AFHTTPResponseSerializer serializer];
         self.requestSerializer=[AFJSONRequestSerializer serializer];
         
         self.securityPolicy.allowInvalidCertificates = YES;
+        
     }
     return self;
 }
+
 - (void)requestWithMethod:(HTTPMethod)method
                  WithPath:(NSString *)path
                WithParams:(NSDictionary*)params

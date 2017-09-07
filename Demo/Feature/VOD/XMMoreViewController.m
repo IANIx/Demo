@@ -20,6 +20,8 @@ static NSString *const cellIdentifier = @"CELL";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self requsetmorecontent];
+    self.title = @"More";
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collection];
     [self.collection mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -28,6 +30,21 @@ static NSString *const cellIdentifier = @"CELL";
 
     // Do any additional setup after loading the view.
 }
+-(void)requsetmorecontent{
+        [[XM_HTTPRequest manager] requestWithMethod:POST
+                                           WithPath:XM_CONTENTLIST_URL
+                                         WithParams:@{@"mac":[self getMacAddress],
+                                                      @"mediaType":@"live",
+                                                      @"categoryId":@"3",
+                                                      @"pageSize":[NSNumber numberWithInt:10],
+                                                      @"page":[NSNumber numberWithInt:1]}
+                                   WithSuccessBlock:^(NSDictionary *dic) {
+                                       NSLog(@"success --> %@",dic);
+                                   } WithFailurBlock:^(NSError *error) {
+                                       NSLog(@"failed -->error == %@",error.description);
+                                   }];
+    }
+
 #pragma mark - collection
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 50;

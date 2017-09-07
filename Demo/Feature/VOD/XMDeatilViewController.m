@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Detail";
     // Do any additional setup after loading the view.
 }
 
@@ -30,6 +31,38 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.bottom.equalTo(self.view);
     }];
+}
+
+-(void)creatRequestmenu{
+    [[XM_HTTPRequest manager] requestWithMethod:POST
+                                       WithPath:XM_CONTENTDETAIL_URL
+                                     WithParams:@{@"mac":[self getMacAddress],
+                                                  @"contentId":@"0",
+                                                 }
+     
+                               WithSuccessBlock:^(NSDictionary *dic) {
+                                   NSLog(@"success --> %@",dic);
+                               } WithFailurBlock:^(NSError *error) {
+                                   NSLog(@"failed -->error == %@",error.description);
+                               }];
+}
+
+-(void)creatRequestPlay{
+    
+    [[XM_HTTPRequest manager] requestWithMethod:POST
+                                       WithPath:XM_Play_URL
+                                     WithParams:@{@"mac":[self getMacAddress],
+                                                  @"contentId":@"0",
+                                                  @"mediaType":@"vod",
+                                                  @"quality":@"auto"
+                                                  }
+     
+                               WithSuccessBlock:^(NSDictionary *dic) {
+                                   NSLog(@"success --> %@",dic);
+                               } WithFailurBlock:^(NSError *error) {
+                                   NSLog(@"failed -->error == %@",error.description);
+                               }];
+
 }
 
 - (void)didReceiveMemoryWarning {

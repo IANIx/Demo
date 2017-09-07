@@ -18,13 +18,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    [self requestchannellist];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self.view);
     }];
 
     // Do any additional setup after loading the view.
+}
+
+-(void)requestchannellist{
+    
+    [[XM_HTTPRequest manager] requestWithMethod:POST
+                                       WithPath:XM_CHANELLIST_URL
+                                     WithParams:@{@"mac":[self getMacAddress],
+                                                  @"pageSize":[NSNumber numberWithInt:10],
+                                                  @"page":[NSNumber numberWithInt:1]}
+                               WithSuccessBlock:^(NSDictionary *dic) {
+                                   NSLog(@"success --> %@",dic);
+                               } WithFailurBlock:^(NSError *error) {
+                                   NSLog(@"failed -->error == %@",error.description);
+                               }];
+
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 15;

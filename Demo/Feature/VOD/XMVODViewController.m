@@ -16,6 +16,11 @@
 
 @implementation XMVODViewController
 
+{
+    UIScrollView *_scrollView;
+    UIPageControl *_pageControl;
+    UILabel *_label;}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
        self.view.backgroundColor = XM_COMMON_BG_COLOR;
@@ -101,6 +106,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 15;
 }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 200;
+}
+
+    
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     XMVODTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
@@ -109,8 +122,13 @@
     }
     return cell;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 370;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIViewController *viewcontroller = [[XMRootViewController alloc]init];
+    [self.navigationController pushViewController:viewcontroller animated:YES];
 }
 #pragma mark - cell
 - (void)XMVODCell:(XMVODTableViewCell *)cell MorebtnDidClicked:(UIButton *)button {
