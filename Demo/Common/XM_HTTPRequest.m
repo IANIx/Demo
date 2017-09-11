@@ -25,16 +25,26 @@
         // 请求超时设定
         self.requestSerializer.timeoutInterval = 5;
         self.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
-        self.responseSerializer.acceptableContentTypes
-        = [NSSet
-           setWithObjects:@"text/html",@"text/plain",@"application/json",nil];
-        self.responseSerializer = [AFJSONResponseSerializer serializer];
-        self.requestSerializer=[AFJSONRequestSerializer serializer];
         
+        self.responseSerializer = [AFHTTPResponseSerializer serializer];
+        self.requestSerializer=[AFJSONRequestSerializer serializer];
+        self.responseSerializer.acceptableContentTypes
+        = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
+        
+        
+        [self.requestSerializer setValue:@"phone" forHTTPHeaderField:@"X-deviceType"];
+    
+        [self.requestSerializer setValue:@"48:A1:95:B3:B3:A5" forHTTPHeaderField:@"X-mac"];
+//        [self.requestSerializer setValue:@"" forHTTPHeaderField:@"X-areaCode"];
+//        [self.requestSerializer setValue:@"" forHTTPHeaderField:@"X-version"];
+ 
+       
         self.securityPolicy.allowInvalidCertificates = YES;
+        
     }
     return self;
 }
+
 - (void)requestWithMethod:(HTTPMethod)method
                  WithPath:(NSString *)path
                WithParams:(NSDictionary*)params
@@ -44,20 +54,21 @@
     switch (method) {
         case GET:{
             [self GET:path parameters:params progress:nil success:^(NSURLSessionTask *task, NSDictionary * responseObject) {
-                NSLog(@"Success: %@", responseObject);
+                NSLog(@"Success --> %@", responseObject);
                 success(responseObject);
             } failure:^(NSURLSessionTask *operation, NSError *error) {
-                NSLog(@"Error: %@", error);
+                NSLog(@"Error -- > %@", error);
                 failure(error);
             }];
             break;
         }
         case POST:{
-            [self POST:path parameters:params progress:nil success:^(NSURLSessionTask *task, NSDictionary * responseObject) {
-                NSLog(@"Success: %@", responseObject);
-                success(responseObject);
+            [self POST:path parameters:params progress:nil success:^(NSURLSessionTask *task, NSData * responseObject) {
+                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+                NSLog(@"Success --> %@", dic);
+                success(dic);
             } failure:^(NSURLSessionTask *operation, NSError *error) {
-                NSLog(@"Error: %@", error);
+                NSLog(@"Error -- > %@", error.description);
                 failure(error);
             }];
             break;

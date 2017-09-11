@@ -45,6 +45,11 @@
     }];
 }
 
+- (void)updateWithContent:(XM_ContentModel *)model {
+    self.lblName.text = model.name;
+//    self.lblIntroduction.text = model.
+    [self.imgContent sd_setImageWithURL:[NSURL URLWithString:model.poster]];
+}
 - (UIImageView *)imgContent {
     if (!_imgContent) {
         _imgContent = [[UIImageView alloc]init];
@@ -73,6 +78,7 @@
 @interface XMVODTableViewCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *collection;
+@property (nonatomic, strong) NSArray *collectionArray;
 @property (nonatomic, strong) UIButton  *btnMore;
 @property (nonatomic, strong) UILabel *lblTitle;
 
@@ -109,14 +115,18 @@
     }];
 
 }
-
+- (void)updateTitle:(NSString *)title content:(XM_ContentListModel *)model{
+    self.lblTitle.text = title;
+    self.collectionArray = model.contents;
+    [self.collection reloadData];
+}
 #pragma mark - Action
 - (void)MoreClicked:(UIButton *)button {
     [self.delegate XMVODCell:self MorebtnDidClicked:button];
 }
 #pragma mark - collection
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 4;
+    return self.collectionArray.count;
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(10, 10, 10, 10);
@@ -133,10 +143,12 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     XMVODCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CELL" forIndexPath:indexPath];
-
+    [cell updateWithContent:self.collectionArray[indexPath.row]];
     return cell;
 }
-
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self.delegate XMVODCell:self collectionDidClicked:self.collectionArray[indexPath.row]];
+}
 #pragma mark - GET/SET
 - (UICollectionView *)collection {
     if (!_collection) {
@@ -168,7 +180,7 @@
     if (!_lblTitle) {
         _lblTitle = [[UILabel alloc]init];
         _lblTitle.textColor = XM_COMMON_TITLE_COLOR;
-        _lblTitle.font = [UIFont boldSystemFontOfSize:16.f];
+        _lblTitle.font = [UIFont boldSystemFontOfSize:14.f];
     }
     return _lblTitle;
 }

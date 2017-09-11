@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NV_AVPlayer.h"
+#import "XM_PlayView.h"
 
 @interface XMDetail_VideoTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) XM_PlayView *playView;
 @end

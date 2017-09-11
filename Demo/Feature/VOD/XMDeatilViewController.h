@@ -10,4 +10,5 @@
 
 @interface XMDeatilViewController : XMRootViewController
 
+@property (nonatomic, strong) XM_ContentModel *content;
 @end

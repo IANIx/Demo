@@ -21,4 +21,16 @@
     // Configure the view for the selected state
 }
 
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self setupViews];
+    }
+    return self;
+}
+- (void)setupViews {
+    self.playView = [[XM_PlayView alloc]initWithFrame:CGRectMake(0, 0, MainScreenWidth, 150)];
+    self.playView.xm_superView = self;  
+    [self addSubview:self.playView];
+}
 @end

@@ -14,4 +14,5 @@
 @property (nonatomic, strong) UILabel *lblName;
 @property (nonatomic, strong) UILabel *lblMsg;
 
+- (void)updatecontent:(XM_ContentModel *)model;
 @end

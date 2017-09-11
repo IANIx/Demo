@@ -10,6 +10,9 @@
 #import "XM_MeInfoTableViewCell.h"
 #import "XM_MeActionTableViewCell.h"
 #import "XM_MEDeatilTableViewCell.h"
+#import "CollectionViewController.h"
+#import "PlayhistoryViewController.h"
+#import "OrderCenterViewController.h"
 @interface XMMeViewController () <UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -22,13 +25,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = zkHexColor(0x181c28);
+    [self.tableView setSeparatorColor:[UIColor darkGrayColor]];
+
     _dataSourceArray = @[@{@"image":@"形状-1",@"text":@"My playing history"},
                          @{@"image":@"矩形-1",@"text":@"My collection"},
-                         @{@"image":@"矩形-1-拷贝-7",@"text":@"My reservation"},
-                         @{@"image":@"矩形-1-拷贝-2",@"text":@"Scan"},
+//                         @{@"image":@"矩形-1-拷贝-7",@"text":@"My reservation"},
+//                         @{@"image":@"矩形-1-拷贝-2",@"text":@"Scan"},
                          @{@"image":@"矩形-1-拷贝-3",@"text":@"My order center"},
-                         @{@"image":@"形状-68",@"text":@"My question feedback"},
-                         @{@"image":@"矩形-1-拷贝-5",@"text":@"My discount code"},
+//                         @{@"image":@"形状-68",@"text":@"My question feedback"},
+//                         @{@"image":@"矩形-1-拷贝-5",@"text":@"My discount code"},
                          @{@"image":@"形状-70",@"text":@"My settings"}];
     [self setupSubViews];
     /*
@@ -58,6 +63,7 @@
 
 - (void)setupSubViews {
     [self.view addSubview:self.tableView];
+//    _tableView.userInteractionEnabled = NO;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.left.top.bottom.equalTo(self.view);
     }];
@@ -84,14 +90,37 @@
             cell = [[XM_MeActionTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CELL1"];
         } else {
             cell = [[XM_MeInfoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CELL0"];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+
         }
     }
     
     if ([cell isKindOfClass:[XM_MEDeatilTableViewCell class]]) {
         [((XM_MEDeatilTableViewCell *)cell) updateCellWithDic:_dataSourceArray[indexPath.row]];
+        
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     return cell;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 2 & indexPath.row == 0) {
+            PlayhistoryViewController *Playhistory = [[PlayhistoryViewController alloc]init];
+            Playhistory.title = @"播放历史";
+            [self.navigationController pushViewController:Playhistory animated:YES];
+        
+        }
+    if  (indexPath.section==2 &indexPath.row==1){
+        CollectionViewController *collection = [[CollectionViewController alloc]init];
+        collection.title = @"我的收藏";
+        [self.navigationController pushViewController:collection animated:YES];
+    }
+    if (indexPath.section == 2& indexPath.row ==2){
+        OrderCenterViewController *order = [[OrderCenterViewController alloc]init];
+        order.title=@"会员中心";
+        [self.navigationController pushViewController:order animated:YES];
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return 44+74;
@@ -102,7 +131,7 @@
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 20.f;
+    return 8.f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.000001;

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AppDelegate+Router.h"
+//#import "AppDelegate+launchImage.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//    [NSThread sleepForTimeInterval:1.0];
     // Override point for customization after application launch.
     [self registerRouter];
 
@@ -25,9 +27,35 @@
     UIViewController *tabbar = [XMRouter matchController:@"main"];
     self.window.rootViewController = tabbar;
     [self.window makeKeyAndVisible];
+    [self showLaunchView];
     return YES;
 }
-
+- (void)showLaunchView {
+    [self getStartupAnimation];
+    self.LaunchView = [[UIImageView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.LaunchView.backgroundColor = [UIColor blackColor];
+    [self.window addSubview:self.LaunchView];
+    [self.window bringSubviewToFront:self.LaunchView];
+}
+- (void)getStartupAnimation {
+    [[XM_HTTPRequest manager] requestWithMethod:POST
+                                       WithPath:XM_STARTUPANIMATION_URL
+                                     WithParams:@{@"mac":@"FC:D5:D9:02:F6:1A",}
+                               WithSuccessBlock:^(NSDictionary *dic) {
+                                   XM_StartupAnimationModel *model = [XM_StartupAnimationModel yy_modelWithDictionary:dic];
+                                   if (model.resultCode == 0) {
+                                       [self.LaunchView sd_setImageWithURL:[NSURL URLWithString:model.animation.url]];
+                                       [self performSelector:@selector(removeLaunchView) withObject:self afterDelay:[model.animation.duration integerValue]];
+                                   }
+                               } WithFailurBlock:^(NSError *error) {
+                                   if (error) {
+                                       [self removeLaunchView];
+                                   }
+                               }];
+}
+- (void)removeLaunchView {
+    [self.LaunchView removeFromSuperview];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

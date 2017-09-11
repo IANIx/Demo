@@ -38,7 +38,10 @@
     }];
     
 }
-
+- (void)updatecontent:(XM_ContentModel *)model{
+    self.lblName.text = model.name;
+    [self.imgContent sd_setImageWithURL:[NSURL URLWithString:model.poster]];
+}
 - (UIImageView *)imgContent {
     if (!_imgContent) {
         _imgContent = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"p2457746352"]];
