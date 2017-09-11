@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface XMMeViewController : XMRootViewController
-
+@property (nonatomic, strong) UIView *view;
 @end
