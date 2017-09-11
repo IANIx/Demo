@@ -7,48 +7,21 @@
 //
 
 #import "XMChannelPlayViewController.h"
+#import "XM_PlayView.h"
+@interface XMChannelPlayViewController ()<NV_AVPlayerDelegate>
 
-@interface XMChannelPlayViewController ()
-
+@property (nonatomic, strong) XM_PlayView *renderView;
 @end
 
 @implementation XMChannelPlayViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self creatRequestPlay];
-    [self requestschedules];
     self.view.backgroundColor = zkHexColor(0x181c28);
     
+    [self.view addSubview:self.renderView];
+    self.renderView.playURL = self.model.playUrl;
     // Do any additional setup after loading the view.
-}
-
--(void)requestschedules{
-        [[XM_HTTPRequest manager] requestWithMethod:POST
-                                           WithPath:XM_CHANNELSCEDULES_URL
-                                         WithParams:@{@"mac":[self getMacAddress],
-                                                      @"scheduleType":@"0",
-                                                      @"channelId" :self.model.channelId,
-                                                      @"pageSize":[NSNumber numberWithInt:10],
-                                                      @"page":[NSNumber numberWithInt:1]}
-                                   WithSuccessBlock:^(NSDictionary *dic) {
-                                   } WithFailurBlock:^(NSError *error) {
-                                   }];
-    }
--(void)creatRequestPlay{
-    
-    [[XM_HTTPRequest manager] requestWithMethod:POST
-                                       WithPath:XM_Play_URL
-                                     WithParams:@{@"mac":@"FC:D5:D9:02:F6:1A",
-                                                  @"contentId":@"1ba443a0-9c53-4f18-8ede-eb91668c567f",
-                                                  @"mediaType":@"vod",
-                                                  @"quality":@"auto"
-                                                  }
-     
-                               WithSuccessBlock:^(NSDictionary *dic) {
-                               } WithFailurBlock:^(NSError *error) {
-                               }];
-    
 }
 
 
@@ -57,6 +30,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (UIView *)renderView {
+    if (!_renderView) {
+        _renderView = [[XM_PlayView alloc]initWithFrame:CGRectMake(0, 0, MainScreenWidth, 150)];
+    }
+    return _renderView;
+}
 /*
 #pragma mark - Navigation
 

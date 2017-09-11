@@ -13,6 +13,7 @@
 @interface XMMoreViewController () <UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *collection;
+@property (nonatomic, strong) NSMutableArray<XM_ContentModel *> *dataSource;
 @end
 
 @implementation XMMoreViewController
@@ -20,9 +21,9 @@ static NSString *const cellIdentifier = @"CELL";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self requsetmorecontent];
     self.title = @"More";
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.dataSource = @[].mutableCopy;
+    [self getcontentCategory];
     [self.view addSubview:self.collection];
     [self.collection mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self.view);
@@ -30,24 +31,26 @@ static NSString *const cellIdentifier = @"CELL";
 
     // Do any additional setup after loading the view.
 }
--(void)requsetmorecontent{
-        [[XM_HTTPRequest manager] requestWithMethod:POST
-                                           WithPath:XM_CONTENTLIST_URL
-                                         WithParams:@{@"mac":[self getMacAddress],
-                                                      @"mediaType":@"live",
-                                                      @"categoryId":@"3",
-                                                      @"pageSize":[NSNumber numberWithInt:10],
-                                                      @"page":[NSNumber numberWithInt:1]}
-                                   WithSuccessBlock:^(NSDictionary *dic) {
-                                       NSLog(@"success --> %@",dic);
-                                   } WithFailurBlock:^(NSError *error) {
-                                       NSLog(@"failed -->error == %@",error.description);
-                                   }];
-    }
-
+- (void)getcontentCategory{
+    [[XM_HTTPRequest manager] requestWithMethod:POST
+                                       WithPath:XM_CONTENTLIST_URL
+                                     WithParams:@{@"mac":[self getMacAddress],
+                                                  @"mediaType":@"vod",
+                                                  @"categoryId":self.menu.categoryId,
+                                                  @"pageSize":@30,
+                                                  @"page":@1}
+                               WithSuccessBlock:^(NSDictionary *dic) {
+                                   XM_ContentListModel *model = [XM_ContentListModel yy_modelWithDictionary:dic];
+                                   if (model.resultCode == 0) {
+                                       [self.dataSource addObjectsFromArray:model.contents];
+                                       [self.collection reloadData];
+                                   }
+                               } WithFailurBlock:^(NSError *error) {
+                               }];
+}
 #pragma mark - collection
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 50;
+    return self.dataSource.count;
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(10, 10, 10, 10);
@@ -64,11 +67,13 @@ static NSString *const cellIdentifier = @"CELL";
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     XMMoreCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-    
+    [cell updatecontent:self.dataSource[indexPath.row]];
     return cell;
 }
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-      
+    UIViewController *viewController = [XMRouter matchController:@"vod/detail" withDic:@{@"content":self.dataSource[indexPath.row]}];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 

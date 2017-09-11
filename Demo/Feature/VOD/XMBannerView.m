@@ -19,10 +19,9 @@
 */
 
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame andMenu:(XM_MenuModel *)menu {
     self = [super initWithFrame:frame];
     [self setupSubViews];
-    [self requesthome];
     return self;
 }
 
@@ -35,20 +34,13 @@
     
 //    [self performSelector:@selector(changeImage) withObject:self afterDelay:2.f];
 }
-
--(void)requesthome{
-    [[XM_HTTPRequest manager] requestWithMethod:POST
-                                       WithPath:XM_MENULIST_URL
-                                     WithParams:@{@"mac":@"C:D5:D9:02:F6:1A",
-                                                  @"menuId":@"0",
-                                                  @"menuId":@"CN_zh"}
-                               WithSuccessBlock:^(NSDictionary *dic) {
-                                   NSLog(@"success --> %@",dic);
-                               } WithFailurBlock:^(NSError *error) {
-                                   NSLog(@"failed -->error == %@",error.description);
-                               }];
+- (void)updateBannerImageWithArray:(NSArray<XM_rContentModel *> *)array {
+    if (self.scrollView.subviews.count == array.count) {
+        [self.scrollView.subviews enumerateObjectsUsingBlock:^(__kindof UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj sd_setImageWithURL:[NSURL URLWithString:array[idx].poster]];
+        }];
+    }
 }
-
 
 #pragma mark - ScrollView
 -(void)changeImage
@@ -134,16 +126,7 @@
         _scrollView.showsHorizontalScrollIndicator = NO;
         for (int i = 0; i < 4; i++) {
             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(_scrollView.frame.size.width*i, 0, _scrollView.frame.size.width, _scrollView.frame.size.height)];
-//            imageView.backgroundColor = RGBCOLOR(arc4random()%255, arc4random()%255, arc4random()%255);
-            if (i == 0) {
-                imageView.backgroundColor = [UIColor yellowColor];
-            } else if (i == 1) {
-                imageView.backgroundColor = [UIColor greenColor];
-            } else if (i == 2) {
-                imageView.backgroundColor = [UIColor cyanColor];
-            } else {
-                imageView.backgroundColor = [UIColor orangeColor];
-            }
+            imageView.backgroundColor = [UIColor grayColor];
             [_scrollView addSubview:imageView];
         }
         _scrollView.delegate = self;

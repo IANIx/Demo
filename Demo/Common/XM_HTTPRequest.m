@@ -26,18 +26,19 @@
         self.requestSerializer.timeoutInterval = 5;
         self.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
         
+        self.responseSerializer = [AFHTTPResponseSerializer serializer];
+        self.requestSerializer=[AFJSONRequestSerializer serializer];
         self.responseSerializer.acceptableContentTypes
         = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
         
         
+        [self.requestSerializer setValue:@"phone" forHTTPHeaderField:@"X-deviceType"];
+    
         [self.requestSerializer setValue:@"48:A1:95:B3:B3:A5" forHTTPHeaderField:@"X-mac"];
 //        [self.requestSerializer setValue:@"" forHTTPHeaderField:@"X-areaCode"];
 //        [self.requestSerializer setValue:@"" forHTTPHeaderField:@"X-version"];
-        [self.requestSerializer setValue:@"phone" forHTTPHeaderField:@"X-deviceType"];
-
-        self.responseSerializer = [AFHTTPResponseSerializer serializer];
-        self.requestSerializer=[AFJSONRequestSerializer serializer];
-        
+ 
+       
         self.securityPolicy.allowInvalidCertificates = YES;
         
     }

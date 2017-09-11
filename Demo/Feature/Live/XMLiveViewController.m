@@ -21,7 +21,10 @@
     [super viewDidLoad];
     _dataSource = @[].mutableCopy;
     [self requestchannellist];
+//    [self.tableView.mj_header beginRefreshing];
     [self.view addSubview:self.tableView];
+    [self.tableView setSeparatorColor:[UIColor darkGrayColor]];
+
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self.view);
     }];
@@ -39,6 +42,12 @@
                                    XM_ChannelListModel *model = [XM_ChannelListModel yy_modelWithDictionary:dic];
                                    if (model.resultCode == 0) {
                                        [self.dataSource addObjectsFromArray:model.channels];
+//                                       dispatch_sync(dispatch_get_main_queue(), ^{
+//                                           //Update UI in UI thread here
+//                                          
+//                                           
+//                                       });
+                                       [self.tableView.mj_header endRefreshing];
                                        [self.tableView reloadData];
                                    }
                                } WithFailurBlock:^(NSError *error) {
@@ -49,12 +58,17 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSource.count;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0.000001;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     XMLiveTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[XMLiveTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     [cell updateWithModel:self.dataSource[indexPath.row]];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -75,7 +89,11 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor clearColor];
+//        _tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//            // 进入刷新状态后会自动调用这个block
+//        }];
     }
+    
     return _tableView;
 }
 

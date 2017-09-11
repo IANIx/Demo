@@ -72,7 +72,8 @@
     NSString *outstring = [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x", *ptr, *(ptr+1), *(ptr+2), *(ptr+3), *(ptr+4), *(ptr+5)];
     free(buf);
     
-    return [outstring uppercaseString];
+//    return [outstring uppercaseString];
+    return @"48:A1:95:B3:B3:A5";
 }
 
 - (void)didReceiveMemoryWarning {

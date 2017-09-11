@@ -18,6 +18,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//    [NSThread sleepForTimeInterval:1.0];
     // Override point for customization after application launch.
     [self registerRouter];
 
@@ -32,14 +33,14 @@
 - (void)showLaunchView {
     [self getStartupAnimation];
     self.LaunchView = [[UIImageView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.LaunchView.backgroundColor = [UIColor whiteColor];
+    self.LaunchView.backgroundColor = [UIColor blackColor];
     [self.window addSubview:self.LaunchView];
     [self.window bringSubviewToFront:self.LaunchView];
 }
 - (void)getStartupAnimation {
     [[XM_HTTPRequest manager] requestWithMethod:POST
                                        WithPath:XM_STARTUPANIMATION_URL
-                                     WithParams:@{@"mac":@"FC:D5:D9:02:F6:1A"}
+                                     WithParams:@{@"mac":@"FC:D5:D9:02:F6:1A",}
                                WithSuccessBlock:^(NSDictionary *dic) {
                                    XM_StartupAnimationModel *model = [XM_StartupAnimationModel yy_modelWithDictionary:dic];
                                    if (model.resultCode == 0) {

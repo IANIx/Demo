@@ -45,6 +45,142 @@
 }
 
 @end
+
+@implementation XM_MenuModel
+
+
+@end
+
+@implementation XM_MenuListModel
+
++ (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper{
+    return @{@"message" : @"description",
+             @"resultCode":@"resultCode",
+             @"posterPrefix":@"posterPrefix",
+             @"menus":@"menus"};
+}
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"message" : @"description",
+             @"resultCode":@"resultCode",
+             @"posterPrefix":@"posterPrefix",
+             @"menus":[XM_MenuModel class]};
+}
+
+@end
+
+@implementation XM_ContentModel
+
+
+@end
+@implementation XM_ContentListModel
+
++ (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper{
+    
+    return @{@"message" : @"description",
+             @"resultCode":@"resultCode",
+             @"categoryId":@"categoryId",
+             @"categoryName":@"categoryName",
+             @"pageCount":@"pageCount",
+             @"contents":@"contents"};
+}
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"message" : @"description",
+             @"resultCode":@"resultCode",
+             @"categoryId":@"categoryId",
+             @"categoryName":@"categoryName",
+             @"pageCount":@"pageCount",
+             @"contents":[XM_ContentModel class]};
+}
+
+@end
+
+@implementation XM_PlayauthModel
+
+
+@end
+
+@implementation XM_rContentModel
+
++ (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper{
+    
+    return @{@"message" : @"description",
+             @"duration":@"duration",
+             @"episodeTotal":@"episodeTotal",
+             @"episodeUpdated":@"episodeUpdated",
+             @"markPosition":@"markPosition",
+             @"markUrl":@"markUrl",
+             @"poster":@"poster",
+             @"productId":@"productId",
+             @"resAssetId":@"resAssetId",
+             @"sort":@"sort",
+             @"title":@"title",
+             @"type":@"type",
+             @"url":@"url"};
+}
+
+@end
+
+@implementation XM_RecommendModel
+
++ (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper{
+    
+    return @{@"message" : @"description",
+             @"poster":@"poster",
+             @"rContent":@"rContent"};
+}
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"message" : @"description",
+             @"poster":@"poster",
+             @"rContent":[XM_rContentModel class]};
+}
+
+@end
+
+@implementation XM_BannerMenuModel
+
++ (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper{
+    
+    return @{@"categoryId" : @"categoryId",
+             @"icon":@"icon",
+             @"menuId":@"menuId",
+             @"menuName":@"menuName",
+             @"poster":@"poster",
+             @"sort":@"sort",
+             @"style":@"style",
+             @"type":@"type",
+             @"recommend":@"recommend"};
+}
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"categoryId" : @"categoryId",
+             @"icon":@"icon",
+             @"menuId":@"menuId",
+             @"menuName":@"menuName",
+             @"poster":@"poster",
+             @"sort":@"sort",
+             @"style":@"style",
+             @"type":@"type",
+             @"recommend":[XM_RecommendModel class]};
+}
+
+
+@end
+
+@implementation XM_MenuRecommendModel
+
++ (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper{
+    
+    return @{@"message" : @"description",
+             @"resultCode":@"resultCode",
+             @"menus":@"menus"};
+}
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"message" : @"description",
+             @"resultCode":@"resultCode",
+             @"menus":[XM_BannerMenuModel class]};
+}
+
+
+@end
 @implementation XM_Model
 
 

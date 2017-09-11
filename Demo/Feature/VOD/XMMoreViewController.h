@@ -10,4 +10,5 @@
 
 @interface XMMoreViewController : XMRootViewController
 
+@property (nonatomic, strong) XM_MenuModel *menu;
 @end

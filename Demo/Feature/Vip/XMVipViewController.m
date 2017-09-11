@@ -8,16 +8,23 @@
 
 #import "XMVipViewController.h"
 #import "XMVODTableViewCell.h"
-
+#import "VipBannerView.h"
 @interface XMVipViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) VipBannerView *bannerView;
 @end
 
 @implementation XMVipViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self requestvip];
+
+    
+    self.bannerView = [[VipBannerView alloc]initWithFrame:CGRectMake(0, 0, MainScreenWidth, 175)];
+    
+    [self.view addSubview:self.tableView];
     self.view.backgroundColor = zkHexColor(0x181c28);
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -26,6 +33,28 @@
 
     // Do any additional setup after loading the view.
 }
+-(void)requestvip{
+    [[XM_HTTPRequest manager] requestWithMethod:POST
+                                       WithPath:XM_MENULIST_URL
+                                     WithParams:@{@"mac":@"C:D5:D9:02:F6:1A",
+                                                  @"menuId":@"0",
+                                                  @"menuId":@"CN_zh"}
+                               WithSuccessBlock:^(NSDictionary *dic) {
+                                   NSLog(@"success --> %@",dic);
+                               } WithFailurBlock:^(NSError *error) {
+                                   NSLog(@"failed -->error == %@",error.description);
+                               }];
+}
+
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 175.f;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return self.bannerView;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 15;
 }

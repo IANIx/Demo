@@ -20,10 +20,12 @@
 @protocol XMVODCellActionDelegate <NSObject>
 
 - (void)XMVODCell:(XMVODTableViewCell *)cell MorebtnDidClicked:(UIButton *)button;
+- (void)XMVODCell:(XMVODTableViewCell *)cell collectionDidClicked:(XM_ContentModel *)contentModel;
 
 @end
 
 @interface XMVODTableViewCell : UITableViewCell
 
 @property (nonatomic, weak) id<XMVODCellActionDelegate> delegate;
+- (void)updateTitle:(NSString *)title content:(XM_ContentListModel *)model;
 @end
