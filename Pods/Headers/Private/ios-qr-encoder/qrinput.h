@@ -1,0 +1,1 @@
+../../../ios-qr-encoder/libqrencode/qrinput.h
