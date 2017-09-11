@@ -10,4 +10,6 @@
 
 @interface XMDetail_CommentTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) UIButton *likeButton;
+@property (nonatomic, strong) UIButton  *shareButton;
 @end

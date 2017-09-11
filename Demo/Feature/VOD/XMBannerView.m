@@ -36,6 +36,8 @@
 }
 - (void)updateBannerImageWithArray:(NSArray<XM_rContentModel *> *)array {
     if (self.scrollView.subviews.count == array.count) {
+        self.contentArray = array.copy;
+        self.label.text = self.contentArray[0].title;
         [self.scrollView.subviews enumerateObjectsUsingBlock:^(__kindof UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [obj sd_setImageWithURL:[NSURL URLWithString:array[idx].poster]];
         }];
@@ -60,6 +62,9 @@
 {
     int pageNumber = self.scrollView.contentOffset.x/self.frame.size.width;//自定义方法，根据偏移量设置当前页码
     self.pageControl.currentPage = pageNumber;
+    if (pageNumber) {
+            self.label.text = self.contentArray[pageNumber].title;
+    }
 
 //    //获得偏移量
 //    CGPoint point = self.scrollView.contentOffset;
@@ -150,7 +155,10 @@
 }
 - (UILabel *)label {
     if (!_label) {
-        _label = [[UILabel alloc]initWithFrame:CGRectMake(0, self.frame.size.height-28, self.frame.size.width, 28)];
+        _label = [[UILabel alloc]initWithFrame:CGRectMake(10, self.frame.size.height-28, self.frame.size.width-10-100, 28)];
+        _label.textAlignment = NSTextAlignmentLeft;
+        _label.textColor = [UIColor whiteColor];
+        _label.font = [UIFont systemFontOfSize:15.f];
     }
     return _label;
 }

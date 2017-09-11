@@ -17,7 +17,7 @@
 
 @property (nonatomic,weak) NSTimer *timer;
 
-
+@property (nonatomic,copy) NSArray<XM_rContentModel *> *contentArray;
 - (instancetype)initWithFrame:(CGRect)frame andMenu:(XM_MenuModel *)menu;
 - (void)updateBannerImageWithArray:(NSArray<XM_rContentModel *> *)array;
 @end

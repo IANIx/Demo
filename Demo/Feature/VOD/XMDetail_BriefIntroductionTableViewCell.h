@@ -10,4 +10,8 @@
 
 @interface XMDetail_BriefIntroductionTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *directorLabel;
+@property (nonatomic, strong) UILabel *scoreLabel;
+@property (nonatomic, strong) UILabel *starringLabel;
 @end
